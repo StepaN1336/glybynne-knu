@@ -1,16 +1,3 @@
-"""
-California Housing Price Prediction
-PyTorch Feed-Forward Neural Network — 5 Experiment Configurations
-
-Dataset : California Housing (scikit-learn)
-Task    : Predict median house value (USD) from 8 district-level features
-Author  : Lab work
-
-Parameters fixed across all experiments
-  test_size    = 0.2
-  random_state = 42
-"""
-
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -118,15 +105,6 @@ def train_and_evaluate(model, optimizer, loss_fn, epochs, batch_size):
     return pred_usd, test_loss, mae, r2, train_losses
 
 # ── 6. Five experiment configurations ─────────────────────────────────────────
-#
-#  Each experiment differs in:
-#   • hidden layer architecture  (depth, width)
-#   • activation function
-#   • batch normalisation
-#   • dropout rate
-#   • optimizer
-#   • loss function
-#
 experiments = [
     # Exp 1 — shallow, ReLU, no regularisation, Adam, MSE
     {
@@ -247,7 +225,7 @@ ax0.bar_label(bars, fmt="$%.0f", fontsize=8, padding=3)
 ax0.set_title("MAE on Test Set (USD)", fontsize=12)
 ax0.set_ylabel("MAE (USD)")
 
-# (b) R² comparison
+# (b) R^2 comparison
 ax1 = fig.add_subplot(gs[0, 1])
 r2s    = [r["r2"] for r in all_results]
 cols2  = ["#e74c3c" if r["id"] == best["id"] else "#27ae60" for r in all_results]
